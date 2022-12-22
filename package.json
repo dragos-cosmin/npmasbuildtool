@@ -4,7 +4,8 @@
   "description": "A small demo site for our npm scripting adventures",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test -u bdd -R spec ",
+    "test": "mocha test -u bdd -R spec --exit",
+    "test:options": "mocha",
     "start": "node index.js",
     "stop": "echo Running stop script",
     "restart": "echo Running restart script",
@@ -37,7 +38,10 @@
     "push:heroku": "git push keroku master",
     "launch:prod:windows": "start https://stupidlittlewebsite.herokuapp.com/",
     "launch:prod": "heroku open",
-    "deploy:prod": "npm run test:deploy -s && npm run build -s",
+    "push": "npm run push:origin && npm run push:heroku", 
+    "deploy:prod": "npm run test:deploy -s && npm run build -s && npm run version:patch && npm run push && npm run lauch:prod",
+    "deploy:prod:time": "time(npm run deploy:prod)",
+    "deploy:prod:script": "bash ./deployProd.bat",
     "test:deploy": "npm t -- -R dot"
   },
   "engines": {
