@@ -4,7 +4,7 @@
   "description": "A small demo site for our npm scripting adventures",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test -u bdd -R spec",
+    "test": "mocha test -u bdd -R spec ",
     "start": "node index.js",
     "stop": "echo Running stop script",
     "restart": "echo Running restart script",
@@ -29,12 +29,16 @@
     "watch:bundle": "watchify ./client/js/app.js -o ./public/js/bundle.js -dv",
     "watch:bundleWatcher": "watch \"npm run build:bundle\" client",
     "watch:browser": "",
-    "watch": "start /b npm run watch:test & start /b npm run watch:bundle & start /b npm run watch:server & start /b npm run watch:browser",
+    "watch": "npm run watch:test & start /b npm run watch:bundle & start /b npm run watch:server & start /b npm run watch:browser",
     "version:major": "npm version major",
     "version:minor": "npm version minor",
     "version:patch": "npm version patch",
     "push:origin": "git push --tags origin HEAD:master",
-    "push:heroku": "git push keroku master"
+    "push:heroku": "git push keroku master",
+    "launch:prod:windows": "start https://stupidlittlewebsite.herokuapp.com/",
+    "launch:prod": "heroku open",
+    "deploy:prod": "npm run test:deploy -s && npm run build -s",
+    "test:deploy": "npm t -- -R dot"
   },
   "engines": {
     "node": "~18.12.1",
